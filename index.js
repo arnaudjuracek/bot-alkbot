@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env node
 const path = require('path')
 const Markov = require('markov-strings').default
 const fetch = require('node-fetch')
