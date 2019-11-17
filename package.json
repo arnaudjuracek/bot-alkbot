@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
-    "markov-strings": "chevalvert/markov-strings"
+    "markov-strings": "chevalvert/markov-strings",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "eslint": "^4.18.0",

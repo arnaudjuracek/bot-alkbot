@@ -1,6 +1,7 @@
 #!/bin/bash
 const path = require('path')
 const Markov = require('markov-strings').default
+const fetch = require('node-fetch')
 
 require('dotenv').config({ path: path.resolve(__dirname, '.env') })
 
@@ -41,6 +42,21 @@ const weightedStrategies = [
   'markov'
 ]
 
-// for (let i = 0; i < 100; i++) {
-console.log(STRATEGIES[randomOf(weightedStrategies)]())
-// }
+;(async () => {
+  try {
+    const raw = await fetch(process.env.POST, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ value1: STRATEGIES[randomOf(weightedStrategies)]() })
+    })
+
+    const res = await raw.text()
+    console.log(res)
+  } catch (error) {
+    console.error(error)
+    process.exit(1)
+  }
+})()
